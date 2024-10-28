@@ -14,8 +14,9 @@ In this tutorial, we’ll walk you through developing your first app.
 Alright, let’s build our first app! We’ll dive into the use case and the code, and then break down what’s happening under the hood.
 
 ### Use case
+Imagine a syftbox network with multiple peers, and each peer containing their own set of files. Some of them may have a file named `value.txt` in their `/public` folder.
 
-In our first app, we’ll search for and aggregate a specific file value across the entire Syftbox network. This file may be located in the `/public` folder _(we’ll explore private folders later)_. If a peer doesn’t have this file, we’ll add them to a missing list.
+We want to build an app that will aggregate the values from all the `value.txt` files across the network. If a peer doesn’t have this file, we’ll add them to a missing list.
 
 
 Here’s what our `main.py` would look like:
