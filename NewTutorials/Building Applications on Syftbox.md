@@ -87,9 +87,11 @@ Simply place both files in a folder, move it to `/SyftBox/apps`, and you're all 
 
 ## How?
 
-When developing on top of SyftBox, the emphasis is on modularity and flexibility. Applications should be designed in a way that allows them to be handled and integrated in multiple contexts. Currently, the first approach to implementing application logic is through our App Plugin system.
+### It's All About Files and Directories!
 
 To get started, any folder inside `/app` is considered a valid application. Each app must include an entry point—a shell script named `run.sh`. This script serves as the main point of execution for the app, providing a clear and consistent structure for running applications on SyftBox.
+
+With Syftbox, the workflow is designed to be straightforward. Your applications run entirely within your local environment. From apps perspective, everything revolves around files and folders, which are shared, created, and managed right on your system.
 
 
 Your Syftbox will likely have a folder structure like this:
@@ -114,14 +116,6 @@ Your Syftbox will likely have a folder structure like this:
 
 Note: This is not the only way to design and develop apps on SyftBox. We are actively working on a better plugin system to enhance the development experience. For now, we recommend sticking with the basics.
 
-
-### It's All About Files and Directories!
-
-With Syftbox, the workflow is designed to be straightforward and efficient. Your applications run entirely within your local environment. From apps perspective, everything revolves around files and folders, which are shared, created, and managed right on your system.
-
-### Running an App
-
-To `add a new app to the system`, simply drag your app's folder (containing a `run.sh` file) into the `SyftBox/apps` folder. That's it! The App Plugin will handle the execution for you.
 
 
 ## What We’ve Learned
