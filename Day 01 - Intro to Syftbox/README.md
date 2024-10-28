@@ -42,8 +42,7 @@ For example, if you check your public folder within your datasite, you’ll see 
 # Video tutorial #1:
 **explore your datasite, create your first public home.html and explore other datasites on the Syft network!**
 <br>
-https://www.loom.com/share/c4d1607c952f446989678553296c9e95?sid=57a070ec-679d-47ee-84d6-03f9732c1df4
-(will be moving this to youtube shortly^)
+(coming soon)
 
 <br>
 
