@@ -26,11 +26,11 @@ You should also be able to see your datasite folder appear in this domain- https
 # What is a datasite?
 
 
-In Syftbox, a datasite refers to your own personal domain. This term is analogous to a website, but here, it’s called a datasite because all the data within belongs to you. You have complete control over which parts of your data are publicly accessible, which are privately accessible, and which pieces you grant selective access to others. Your datasite serves as your fundamental space within Syftbox, allowing you to create, add your data, and develop your own projects. You can also manage permissions to let others access your datasite as needed.
+In Syftbox, a datasite refers to your own personal domain. This term is analogous to a website, but here, it’s called a datasite because all the data within belongs to you. You have complete control over which parts of your data are publicly accessible, which are privately accessible, and over which pieces you grant selective access to others. Your datasite serves as your fundamental space within Syftbox, allowing you to create, add your data, and develop your own projects. 
 
 <br>
 
-# What are my private and public spaces in my datasite? 
+# What are the private and public spaces in my datasite? 
 
 When you open your datasite folder, you’ll notice a default file called the _.syftperm file. This file functions like any other file permission system, allowing you to decide who can read and write to it. As the admin of your own datasite, you have complete control over who can access different parts of your space.
 
@@ -39,29 +39,18 @@ For example, if you check your public folder within your datasite, you’ll see 
 
 <br>
 
-# video tutorial #1:
-**explore your datasite, create your first public home.html and explore other datasites on the syft network!**
+# Video tutorial #1:
+**explore your datasite, create your first public home.html and explore other datasites on the Syft network!**
 <br>
-[![Watch the video](https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
+(coming soon)
 
 <br>
-
-
 
 
 
 
 # Congratulations!!
 
-- tomorrow you'll build your first federated app
+Tomorrow you'll build your first app on Syftbox!
 
-# Bonus: customize your page!
 
-You've successfully installed and run SyftBox. You're now ready to explore the broad listening internet. Follow along here to `Day 01` of the `50-DAYS-OF-FL-CODE`.
-<style>
-/* Enable smooth scrolling */
-@media screen and (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-}

@@ -1,6 +1,6 @@
 # Day 05 - Learning Ring: Running Federated Learning in a Distributed Ring.
 
-_Author_: <a href="https://x.com/itsmaddox_j" target="_blank">Andrej Jovanović</a>, Ionesio Junior  
+_Author_: Ionesio Junior, Andrej Jovanović (<a href="https://x.com/itsmaddox_j" target="_blank">X: @itsmaddox_j</a>)
 
 ```
 Learn how to transform your ring application to support federated learning, allowing distributed nodes to collaboratively train machine learning models without sharing raw data.
@@ -8,7 +8,7 @@ Learn how to transform your ring application to support federated learning, allo
 
 Welcome back! In the last tutorial, we transformed our ring application into a generic framework capable of running arbitrary functions across distributed nodes. This flexibility was the foundation for adding privacy-preserving techniques like differential privacy.
 
-In this tutorial, we'll take a step further into the world of privacy-preserving machine learning by introducing **federated learning** ring app. Instead of focusing on privacy at the data aggregation level, federated learning enables nodes to collaboratively train a shared model without sharing their local datasets. This way, each node improves the model based on its local data, keeping sensitive information private.
+In this tutorial, we'll take a step further into the world of privacy-preserving machine learning by introducing the **federated learning (FL)** ring app. Instead of focusing on privacy at the data aggregation level, federated learning enables nodes to collaboratively train a shared model without sharing their local datasets. This way, each node improves the model based on its local data, keeping sensitive information private by never aggregating all of the data at one location.
 
 ----------
 
@@ -23,7 +23,22 @@ In this tutorial, we'll take a step further into the world of privacy-preserving
 
 ## Step 1: Introduction to Federated Learning
 
-Federated learning is a decentralized approach to training machine learning models across multiple nodes. Each node maintains its own private dataset, performs local updates to a shared model, and then communicates these updates to a central server or, in our case, the next node in the ring.
+For those of you who are not familiar with federated learning, we provide a brief introduction into the framework below. If you are interesting in learning more, please [please visit this resource](https://github.com/deep-learning-indaba/indaba-pracs-2024/blob/main/practicals/Federated_Learning/Federated_Learning.ipynb) to see a whole tutorial dedicated to understanding the in's and out's.
+
+
+Generally speaking, federated learning is a decentralized approach to training machine learning models across multiple nodes. Instead of aggregating all of the training data on a single node, federated learning pushes computation to the edge wich that each device conducts local training on its own local data. Instead of the data, federated learning clients communicate information that is captured in the model itself which allows all federated clients to learn a global model collaboratively. The whole setup can be summarised in a three step process, as seen in the image below:
+
+<img src="./assets/fl_procedure.png">
+[1]: Image taken from https://github.com/deep-learning-indaba/indaba-pracs-2024/blob/main/practicals/Federated_Learning/Federated_Learning.ipynb
+
+
+> Federated learning operates in successive global rounds of training. Each global round is coprised of a three step process.
+>
+> 1. First, the parameter server sends a copy of the global model to each client.
+> 2. The clients then commence with local training on their local data with their copy of the model for a number of local epochs. Once this training is completed, clients communicate the updates and and the model updates to the server.
+> 3. We then rely on a central parameter server that is responsible for aggregating all the updated client models into a single global update which forms the global model for the next round.
+
+While we do not have an explicit parameter server in our scenario, we can perform a running federated update in this scenario. Specifically, we can have a continuously update the model with new parameter information as this data is passed from client to client in the ring. Of course, we can also extend this to pre-allocate a trusted aggregation server instead of using a Ring. Mathematically, this would be equivalent. 
 
 This approach offers several benefits:
 

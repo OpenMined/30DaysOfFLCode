@@ -1,9 +1,10 @@
-<h1><img src="./../assets/OpenMined-Icon.png" height="100">Day 01 - Hello Federated World</h1>
-> 
+<h1><img src="./../assets/OpenMined-Icon.png" height="100">Day 00 - Hello Federated World</h1>
+>
 
 # Part 1: Introduction
 
 Success Criteria:
+
 - remind people why 50DaysofFL is good
 - problem: pets are hard to build/research
 - solution: syftbox makes it easier to deploy federated learning applications (have a favourite FL platform/algorithm? request a tutorail and we'll make one for you)
@@ -34,6 +35,7 @@ Success Criteria:
 # Bonus: customize your page!
 
 You've successfully installed and run SyftBox. You're now ready to explore the broad listening internet. Follow along here to `Day 01` of the `50-DAYS-OF-FL-CODE`.
+
 <style>
 /* Enable smooth scrolling */
 @media screen and (prefers-reduced-motion: no-preference) {

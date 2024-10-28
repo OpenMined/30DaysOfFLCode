@@ -1,6 +1,6 @@
 <h1><img src="./../assets/OpenMined-Icon.png" height="100">Day 03 - If you like it, you should put a ring on it!</h1>
 
-_Author:_ <a href="https://x.com/itsmaddox_j" target="_blank">Andrej Jovanović</a>
+_Author:_ Andrej Jovanović (<a href="https://x.com/itsmaddox_j" target="_blank">X: @itsmaddox_j</a>)
 
 > TL;DR: Build your very first application with SyftBox: aggregate private knowledge from the crowd!
 
