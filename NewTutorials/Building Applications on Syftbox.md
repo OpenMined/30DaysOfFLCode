@@ -4,7 +4,7 @@ _Author:_ <a>Ionesio Junior</a>
 
 ## Apps in Syftbox?
 
-Although SyftBox is often described as `"Dropbox with permissions"` it is not designed as regular cloud storage. This project has a completely different goal: `enable developers to build PETs applications on top of it with minimal barriers`. Its new architecture emphasizes modularity, aiming to provide a development experience as intuitive and seamless as building applications for an operating system. Regardless of environment, programming language, or protocol, it should be as flexible and accessible as an OS file system.
+Although SyftBox is often described as `"Dropbox with permissions"` it is not designed as regular cloud storage. This project has a completely different goal: `enable developers to build PETs applications on top of it with minimal barriers`. Its new architecture emphasizes modularity, aiming to provide a development experience as intuitive and seamless as building applications for an operating system. Regardless of environment, programming language, or protocol.
 
 
 In this tutorial, we’ll walk you through developing your first app.
