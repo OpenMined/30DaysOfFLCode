@@ -89,7 +89,7 @@ Simply place both files in a folder, move it to `/SyftBox/apps`, and you're all 
 
 ### It's All About Files and Directories!
 
-To get started, any folder inside `/app` is considered a valid application. Each app must include an entry point—a shell script named `run.sh`. This script serves as the main point of execution for the app, providing a clear and consistent structure for running applications on SyftBox.
+To get started, any folder inside `/app` is considered a valid application. Each app must include a shell script named `run.sh` as an entry point. This script serves as the main point of execution for the app, providing a clear and consistent structure for running applications on SyftBox.
 
 With Syftbox, the workflow is designed to be straightforward. Your applications run entirely within your local environment. From apps perspective, everything revolves around files and folders, which are shared, created, and managed right on your system.
 
