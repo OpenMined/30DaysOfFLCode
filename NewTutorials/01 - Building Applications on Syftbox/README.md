@@ -6,18 +6,18 @@ _Author:_ <a>Ionesio Junior</a>
 
 Although SyftBox is often described as a `"Cloud Storage with permissions"` it is not designed to be a cloud storage. This project has a completely different goal: `enable developers to build PETs applications on top of it with minimal barriers`. Its new architecture emphasizes modularity, aiming to provide a development experience as intuitive and seamless as building applications for an operating system. Regardless of environment, programming language, or protocol.
 
-
 In this tutorial, we’ll walk you through developing your first app.
 
 ## Basic Aggregator
 
 ### Use case
+
 Imagine a syftbox network with multiple peers, and each peer containing their own set of files. Some of them may have a file named `value.txt` in their `/public` folder.
 
 We want to build an app that will aggregate the values from all the `value.txt` files across the network. If a peer doesn’t have this file, we’ll add them to a missing list.
 
-
 Here’s what our `main.py` would look like:
+
 ```python
 from pathlib import Path
 from syftbox.lib import Client
@@ -27,8 +27,8 @@ import os
 # If they have the file, read it and aggregate in the total, otherwise, add the username in the missing list.
 # Return both total value and missing list.
 def aggregate(participants: list[str], datasite_path: Path):
-    total = 0  
-    missing = []  
+    total = 0
+    missing = []
 
     for user_folder in participants:
         value_file: Path = Path(datasite_path) / user_folder / "public" / "value.txt"
@@ -67,7 +67,6 @@ if __name__ == "__main__":
     print("\n====================\n")
 ```
 
-
 Now, we need a `run.sh`
 
 ```shell
@@ -82,7 +81,6 @@ uv run main.py
 
 Simply place both files in a folder, move it to `/SyftBox/apps`, and you're all set! You've just created your first app!
 
-
 ## How?
 
 ### It's All About Files and Directories!
@@ -91,8 +89,8 @@ To get started, any folder inside `/SyftBox/apps` is considered a valid applicat
 
 With Syftbox, the workflow is designed to be straightforward. Your applications run entirely within your local environment. From apps perspective, everything revolves around files and folders, which are shared, created, and managed right on your system.
 
-
 Your Syftbox will likely have a folder structure like this:
+
 ```
 /SyftBox
     /apps
@@ -114,27 +112,24 @@ Your Syftbox will likely have a folder structure like this:
 
 Note: This is not the only way to design and develop apps on SyftBox. We are actively working on a better plugin system to enhance the development experience. For now, we recommend sticking with the basics.
 
-
-
 ## What We’ve Learned
 
 In this tutoral we've learned:
 
-*   Syftbox is designed to support various types of PET applications in a highly flexible manner.
-*   Files placed in public folders, like `/public`, are shared across the network and accessible to other peers.
-*   Iteracting with the network is basically iteracting with a list of directories.
-*   Simplicity is key: it's all about managing files and folders, without any hidden complexity.
-*   Any folder placed in `/SyftBox/apps` will be recognized as a valid app and executed every 10 seconds.
-*   `run.sh` dictates what will be executed.
-
-
+- Syftbox is designed to support various types of PET applications in a highly flexible manner.
+- Files placed in public folders, like `/public`, are shared across the network and accessible to other peers.
+- Iteracting with the network is basically iteracting with a list of directories.
+- Simplicity is key: it's all about managing files and folders, without any hidden complexity.
+- Any folder placed in `/SyftBox/apps` will be recognized as a valid app and executed every 10 seconds.
+- `run.sh` dictates what will be executed.
 
 ## Conclusion
+
 In this brief tutorial, we've explored the basics of Syftbox and created our first app! To spark some ideas for our next tutorial, consider the following questions:
 
-* How can peers share anonymized information in this new paradigm? Is it possible to create an app for that?
-* Instead of simply skipping peers with missing files, could we skip those with incorrect file formats, dataset formats, or other data constraints?
-* What if, instead of sharing just a single number, peers chose to share model hyperparameters?
-* What if, rather than only sharing a number, peers opted to share their datasets after applying differential privacy or homomorphic encryption?
+- How can peers share anonymized information in this new paradigm? Is it possible to create an app for that?
+- Instead of simply skipping peers with missing files, could we skip those with incorrect file formats, dataset formats, or other data constraints?
+- What if, instead of sharing just a single number, peers chose to share model hyperparameters?
+- What if, rather than only sharing a number, peers opted to share their datasets after applying differential privacy or homomorphic encryption?
 
 There are many more questions and exciting possibilities within this new paradigm. We look forward to exploring this approach further. But for today, that’s a wrap! Thanks for following along, and see you in the next tutorial!
