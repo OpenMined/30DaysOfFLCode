@@ -1,4 +1,4 @@
-# DP on Syft Computations
+# Syftbox and DP
 
 _Author:_ Matei Simtinică
 
