@@ -4,7 +4,7 @@ _Author:_ <a>Ionesio Junior</a>
 
 ## Apps in Syftbox?
 
-Although SyftBox is often described as a `"Cloud Storage with permissions"` it is not designed to be a cloud storage. This project has a completely different goal: `enable developers to build PETs applications on top of it with minimal barriers`. Its new architecture emphasizes modularity, aiming to provide a development experience as intuitive and seamless as building applications for an operating system. Regardless of environment, programming language, or protocol.
+The goal of Syfttbox is to enable developers to build PETs applications on top of it with minimal barriers. Its new architecture emphasizes modularity, aiming to provide a development experience as intuitive and seamless as building applications for an operating system. Regardless of environment, programming language, or protocol.
 
 In this tutorial, we’ll walk you through developing your first app.
 
@@ -81,7 +81,7 @@ uv run main.py
 
 Simply place both files in a folder, move it to `/SyftBox/apps`, and you're all set! You've just created your first app!
 
-## How?
+## Understanding App Lifecycles
 
 ### It's All About Files and Directories!
 
