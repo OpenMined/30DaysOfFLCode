@@ -11,8 +11,6 @@ In this tutorial, we’ll walk you through developing your first app.
 
 ## Basic Aggregator
 
-Alright, let’s build our first app! We’ll dive into the use case and the code, and then break down what’s happening under the hood.
-
 ### Use case
 Imagine a syftbox network with multiple peers, and each peer containing their own set of files. Some of them may have a file named `value.txt` in their `/public` folder.
 
