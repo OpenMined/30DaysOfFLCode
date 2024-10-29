@@ -4,7 +4,7 @@ _Author:_ <a>Ionesio Junior</a>
 
 ## Apps in Syftbox?
 
-The goal of Syfttbox is to enable developers to build PETs applications on top of it with minimal barriers. Its new architecture emphasizes modularity, aiming to provide a development experience as intuitive and seamless as building applications for an operating system. Regardless of environment, programming language, or protocol.
+The goal of SyftBox is to enable developers to build PETs applications on top of it with minimal barriers. Its new architecture emphasizes modularity, aiming to provide a development experience as intuitive and seamless as building applications for an operating system. Regardless of environment, programming language, or protocol.
 
 In this tutorial, we’ll walk you through developing your first app.
 
