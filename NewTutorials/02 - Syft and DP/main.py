@@ -16,7 +16,7 @@ def compute_result(dataset):
 if __name__ == "__main__":
     client = Client.load()
 
-    dataset_path = client.datasite_path / "datasets" / "dataset.json"
+    dataset_path = client.datasite_path / "datasets" / "private_dataset.json"
     result_path = client.datasite_path / "public" / "value.txt"
 
     if result_path.exists():
