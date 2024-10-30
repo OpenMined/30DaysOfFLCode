@@ -65,7 +65,7 @@ NB: We also have a function called `setup_folders` that we haven't spoken about.
 NBx2: For those with more programming experience: you may notice that we have a dangling reference to `self`. This is because are creating a single `RingRunner` class following the bestest of all coding practices :D. _Don't judge, plz_
 </details>
 
-### Step 2.2: How to we get input files?
+### Step 2.2: How do we get input files?
 Great! We have constructed the main functional body of our system. However, we have just used some functions that we know perform some purpose, but we haven't really dug into them. Let's start with `pending_input_files`
 
 This function is pretty simple. Let's say that we have access to a folder that we call `running_folder`. This is the folder that we have defined for all Ring job requests, if you will, to arrive. What we want our function to do is to scan through this folder, and return the paths of any `json` files found inside, if any. Again, we use `json` files as convention here as we wanted to specify a specific format type for the data that we will receive.
