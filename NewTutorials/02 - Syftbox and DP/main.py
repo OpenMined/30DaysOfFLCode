@@ -15,7 +15,7 @@ def compute_value(dataset):
 if __name__ == "__main__":
     client = Client.load()
 
-    dataset_path = client.datasite_path / "datasets" / "private_dataset.json"
+    dataset_path = client.datasite_path / "datasets" / "dataset.json"
     value_path = client.datasite_path / "public" / "value.txt"
 
     if value_path.exists():
