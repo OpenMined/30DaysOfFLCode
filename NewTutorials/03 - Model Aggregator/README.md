@@ -22,11 +22,11 @@ To keep things simple, we’ll assume the models are already trained and availab
 ##  Model Aggregator App
 If you recall the basic aggregator app, the workflow for aggregating models is very similar. The key differences are:
 
-* Instead of looking for value.txt, we’re looking for model.pth.
-* Instead of aggregating a single float, we’re aggregating model parameters.
+* Instead of looking for `value.txt`, we’re looking for `model.pth`.
+* Instead of aggregating a single `float`, we’re aggregating `models`.
 
 ## How Model Aggregation Works
-The model aggregator continuously monitors each datasite’s folder for updated model parameters. Once it detects updates from all datasites, it starts the aggregation process. Typically, this involves averaging the weights and biases layer-by-layer across models from all datasites.
+The model aggregator continuously monitors each datasite’s folder for updated model parameters. Once it detects updates from all datasites, it starts the aggregation process. Typically, model aggregation involves averaging the weights and biases layer-by-layer across models from all datasites.
 
 Here’s the code in `main.py`:
 ```python
