@@ -1,11 +1,10 @@
 from syftbox.lib import Client
-from pathlib import Path
 import sys
 import json
 import diffprivlib.tools as dp
 
 
-def compute_result(dataset):
+def compute_value(dataset):
     return dp.mean(
         dataset["data"],
         epsilon=dataset["eps"],
@@ -17,12 +16,12 @@ if __name__ == "__main__":
     client = Client.load()
 
     dataset_path = client.datasite_path / "datasets" / "private_dataset.json"
-    result_path = client.datasite_path / "public" / "value.txt"
+    value_path = client.datasite_path / "public" / "value.txt"
 
-    if result_path.exists():
+    if value_path.exists():
         print("\n========== Compute ==========\n")
-        print("result file already exists. skipping execution...")
-        print(f"to force a re-execution, delete the result file at {result_path}")
+        print("value.txt file already exists. skipping execution...")
+        print(f"to force a re-execution, delete the value.txt file at {value_path}")
         print("\n=============================\n")
         sys.exit(0)
 
@@ -35,7 +34,7 @@ if __name__ == "__main__":
     with open(dataset_path) as f:
         dataset = json.load(f)
 
-    result = compute_result(dataset)
+    value = compute_value(dataset)
 
-    with open(result_path, "w") as f:
-        f.write(str(result))
+    with open(value_path, "w") as f:
+        f.write(str(value))
