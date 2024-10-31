@@ -65,6 +65,11 @@ if __name__ == "__main__":
     print("Total aggregation value: ", total)
     print("Missing value.txt peers: ", missing)
     print("\n====================\n")
+
+    # Write the result to a public file
+    result_path = client.datasite_path / "public" / "result.txt"
+    with open(result_path, "w") as f:
+        f.write(str(result))
 ```
 
 Now, we need a `run.sh`
