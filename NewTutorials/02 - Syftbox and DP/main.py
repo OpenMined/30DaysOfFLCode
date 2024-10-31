@@ -8,7 +8,7 @@ def compute_value(dataset):
     return dp.mean(
         dataset["data"],
         epsilon=dataset["eps"],
-        bounds=dataset["bounds"],
+        bounds=tuple(dataset["bounds"]),
     )
 
 

@@ -46,9 +46,9 @@ A private dataset could look like this:
 
 ```json
 {
-  "data": [1.2, 2.6, 0.9],
-  "eps": 0.5,
-  "bounds": [0.5, 3]
+  "data": [1.2, 2.6, 0.9, 1, 1.3, 0.8, 2, 1.9],
+  "eps": 1,
+  "bounds": [1, 3]
 }
 ```
 
@@ -61,7 +61,7 @@ def compute_result(dataset):
     return dp.mean(
         dataset["data"],
         epsilon=dataset["eps"],
-        bounds=dataset["bounds"],
+        bounds=tuple(dataset["bounds"]),
     )
 ```
 
@@ -83,7 +83,7 @@ def compute_value(dataset):
     return dp.mean(
         dataset["data"],
         epsilon=dataset["eps"],
-        bounds=dataset["bounds"],
+        bounds=tuple(dataset["bounds"]),
     )
 
 
@@ -119,14 +119,14 @@ def compute_value(dataset):
     return dp.mean(
         dataset["data"],
         epsilon=dataset["eps"],
-        bounds=dataset["bounds"],
+        bounds=tuple(dataset["bounds"]),
     )
 
 
 if __name__ == "__main__":
     client = Client.load()
 
-    dataset_path = client.datasite_path / "datasets" / "private_dataset.json"
+    dataset_path = client.datasite_path / "datasets" / "dataset.json"
     value_path = client.datasite_path / "public" / "value.txt"
 
     if value_path.exists():
