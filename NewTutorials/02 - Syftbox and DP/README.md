@@ -38,7 +38,7 @@ In this tutorial we'll extend the `aggregator` workflow with another app, `dp_co
     <img src="./assets/dp-workflow.png" width="500px"/>
 </p>
 
-**Important Observation**: `dp_compute` is designed to run on Datasites A, B and C, while the `aggregator` app will run on Datasite X.
+**Important Observation**: `dp_compute` is designed to run on Datasites A, B and C (at the same time), while the `aggregator` app will only run on Datasite X.
 
 We could dive deeper into how to configure the DP parameters, but for this tutorial let's assume they are stored alongside the dataset in each `dataset.json` file.
 
