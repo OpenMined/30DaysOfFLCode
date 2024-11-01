@@ -4,33 +4,31 @@ _Author:_ Matei Simtinică
 
 ## Add a layer of privacy
 
-Since Syftbox is designed to allow developers to analyze data while leveraging PETs, let's walk through a brief example of how we could add a layer of anonymization on top of yesterday's aggregation app.
+Syftbox is designed to allow developers to analyze data while leveraging PETs, so let's walk through a brief example of how we could add a layer of anonymization on top of yesterday's aggregation app.
 
 ## Use case
 
-Let's assume the values we need to aggregate result from a computation applied on a private dataset.
+The `aggregator` app simply aggregates public values stored on various datasites in `value.txt` files, but in a real-life scenario, those values would likely be computed from a _private_ dataset.
 
-The computation is defined by the developer who wants to run a study, but the participants to the study want to make sure the results they'll make publicly available won't leak information about individual data points from the original dataset.
+The computation applied on the dataset would be defined by a researcher who wants to run a study, but the participants to the study (who own the private datsets) want to make sure the results they'll make publicly available won't leak information about individual data points from the original dataset.
 
-This is one of the simplest use-cases for using Differential Privacy.
+This is one of the simplest use-cases for using DP (Differential Privacy).
 
 ## Aggregator recap
 
-Yesterday's `aggregator` app looked at public values stored on other datasites and computed their sum (an aggregated value).
-
-The workflow looks something like this:
+Yesterday's `aggregator` app workflow looks something like this:
 
 <p align="center">
     <img src="./assets/aggregator-workflow.png" width="500px"/>
 </p>
 
-The `aggregator` app runs on Datasite X (which we can associate with a _researcher_) and assumes other datasites have a `value.txt` file which is **public**.
+The `aggregator` app runs on Datasite X (which we can associate with a _researcher_) and assumes other datasites have a `value.txt` file which is **public**, based on which it computes an aggregated result (in this case, their sum).
 
 ## Extend with DP
 
 In a real-life scenario, that value could be computed from a _private dataset_. One issue with computing _public_ values from _private_ data is that aggregated outpus can unintentionally leak information about individual data points, exposing sensitive details if not carefully protected. DP (Differential Privacy) introduces noise in the results in a controlled way, ensuring that individual data points cannot be reverse-engineered or identified, thus preserving privacy without compromising the overall utility of the data. This is why we need DP.
 
-**Note**: Check out [this short recap on DP](./DP_Recap.md) for more details on how this works.
+<!-- **Note**: Check out [this short recap on DP](./DP_Recap.md) for more details on how this works. -->
 
 In this tutorial we'll extend the `aggregator` workflow with another app, `dp_compute`, which will compute the public values (stored in `value.txt`) from a private dataset (`dataset.json`) on each participating datasite, using DP!
 
@@ -104,15 +102,17 @@ if __name__ == "__main__":
 
 Now, Syftbox runs an application every 10 seconds, meaning that an app with the code above will regenerate a different public value every 10 seconds (since DP uses randomly generated noise for each computation).
 
-This could cause issues down the pipeline, so we can extend our application to take this into consideration with a simple rule: if a `value.txt` file already exists, skip the computation.
+This could cause issues down the pipeline, so we can extend our application to take this into consideration with a simple rule: if `dataset.json` was _not_ modified (or it doesn't exist on the filesystem), skip the computation.
 
-We'll also check if `dataset.json` exists before attempting the computation. The new code will look like this:
+The checking logic needs to be dealt with _by our application_, so the new code will look like this:
 
 ```py
 from syftbox.lib import Client
+import os
 import sys
 import json
 import diffprivlib.tools as dp
+from pathlib import Path
 
 
 def compute_value(dataset):
@@ -123,22 +123,44 @@ def compute_value(dataset):
     )
 
 
+def check_dataset_modified(dataset_path: Path):
+    checkpoint_path = dataset_path.with_suffix(".timestamp")
+    last_modified = os.stat(dataset_path).st_mtime
+
+    # if there is no checkpoint file,
+    # consider the dataset changed, since this is the first computation
+    if not checkpoint_path.is_file():
+        with open(checkpoint_path, "w") as f:
+            f.write(str(last_modified))
+        return True
+
+    with open(checkpoint_path) as f:
+        checkpoint = float(f.read())
+
+    if last_modified == checkpoint:
+        return False
+
+    with open(checkpoint_path, "w") as f:
+        f.write(str(last_modified))
+
+    return True
+
+
 if __name__ == "__main__":
     client = Client.load()
 
     dataset_path = client.datasite_path / "datasets" / "dataset.json"
     value_path = client.datasite_path / "public" / "value.txt"
 
-    if value_path.exists():
-        print("\n========== Compute ==========\n")
-        print("value.txt file already exists. skipping execution...")
-        print(f"to force a re-execution, delete the value.txt file at {value_path}")
-        print("\n=============================\n")
-        sys.exit(0)
-
     if not dataset_path.exists() or not dataset_path.is_file():
         print("\n========== Compute ==========\n")
         print(f"dataset not found at {dataset_path}. skipping computation...")
+        print("\n=============================\n")
+        sys.exit(0)
+
+    if not check_dataset_modified(dataset_path):
+        print("\n========== Compute ==========\n")
+        print(f"dataset didn't change. skipping computation...")
         print("\n=============================\n")
         sys.exit(0)
 
@@ -149,28 +171,67 @@ if __name__ == "__main__":
 
     with open(value_path, "w") as f:
         f.write(str(value))
-
 ```
 
-That's about it! We created an app on top of the `aggregator` workflow, which generates the values that are being aggregated from a _private_ dataset, using DP on Syftbox!
+Notice how we added a new function, `check_dataset_modified`, which checks the timestamp of the file's last modification and compares it with the last remembered timestamp (stored in `dataset.timestamp`).
+
+That's about it! We created an app on top of the `aggregator` workflow, which generates the values that are being aggregated from a _private_ dataset!
+
+## Make sure it runs on Syftbox
+
+Now that we have the main app logic, we need to make sure it can properly run on Syftbox.
+
+We'll need two more files :
+
+- `run.sh`, which is the entrypoint for every Syftbox app
+- `requirements.txt`, to specify any dependencies required by our app
+
+Our app uses the `syftbox` Python library and `diffprivlib` for DP, so `requirements.txt` will look like this:
+
+```
+syftbox
+diffprivlib
+```
+
+Our entrypoint needs to make sure we run the app using the right Python environment (with the app's dependencies), so `run.sh` will look like this:
+
+```sh
+#!/usr/bin/env sh
+
+# this will create a Python virtual environment
+uv venv
+
+# install the app's dependencies
+uv pip install -r requirements.txt
+
+# run app using the Python version from the virtual environment
+uv run main.py
+```
+
+The directory structure of our `apps` directory should look like this:
+
+```
+/apps
+├── ...
+├── ... (other apps)
+└── dp_compute
+    ├── main.py
+    ├── requirements.txt
+    └── run.sh
+```
 
 ## Final observations
 
 We now have a workflow that involves _two_ applications:
 
-- `aggregator`, running _on a researcher's datasite_, and computes an aggregated value from public values stored on _other_ datasites
-- `dp_compute`, designed to run on _other datasites_ (belonging to organizations or individuals willing to contribute with insights from their private data) that computes _public values_ from _private data_ in a privacy-preserving manner
+- `aggregator`, running _on a researcher's datasite_ (Datasite X in the figure above), and computes an aggregated value from public values stored on _other_ datasites
+- `dp_compute`, designed to run on _other datasites_, belonging to organizations or individuals willing to contribute with insights from their private data (Datasites A, B and C in the figure above), that computes _public values_ from _private data_ in a privacy-preserving manner
 
-**Note**: the `run.sh` entrypoint works the same as the `aggregator` app's entrypoint, so we'll just copy the one from the previous tutorial:
+You can also find the contents of each file in this tutorial's directory:
 
-```sh
-#!/bin/sh
-
-uv venv
-uv run main.py
-```
-
-You can find the code above in a [separate file here (`main.py`)](<[`main.py`](./main.py)>).
+- [`main.py`](./main.py)
+- [`run.sh`](./run.sh)
+- [`requirements.txt`](./requirements.txt)
 
 ## Conclusions
 

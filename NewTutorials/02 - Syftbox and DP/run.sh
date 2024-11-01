@@ -1,7 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-# this will create venv from python version defined in .python-version
+# this will create a Python virtual environment
 uv venv
 
-# run app using python from venv
+# install the app's dependencies
+uv pip install -r requirements.txt
+
+# run app using the Python version from the virtual environment
 uv run main.py
