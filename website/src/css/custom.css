@@ -1,0 +1,134 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Palettes */
+:root {
+  --grayscale-00: #ffffff;
+  --grayscale-50: #fcfcfc;
+  --grayscale-100: #f7f6f9;
+  --grayscale-150: #f4f3f6;
+  --grayscale-200: #f1f0f4;
+  --grayscale-300: #ecebef;
+  --grayscale-400: #cfcdd6;
+  --grayscale-500: #b4b0bf;
+  --grayscale-600: #5e5a72;
+  --grayscale-700: #464257;
+  --grayscale-750: #353243;
+  --grayscale-800: #2e2b3b;
+  --grayscale-850: #272532;
+  --grayscale-900: #23202c;
+  --grayscale-950: #17161d;
+  --grayscale-1000: #000000;
+
+  --gold-50: #fef9f0;
+  --gold-100: #fef2e2;
+  --gold-200: #fce5c5;
+  --gold-300: #fbdaac;
+  --gold-400: #f9cd8f;
+  --gold-500: #f8c073;
+  --gold-600: #f5a22e;
+  --gold-700: #d17e0a;
+  --gold-800: #885207;
+  --gold-900: #442903;
+  --gold-950: #221502;
+
+  --green-50: #ecf8f6;
+  --green-100: #def2ee;
+  --green-200: #b9e4dc;
+  --green-300: #97d8cb;
+  --green-400: #76cbba;
+  --green-500: #53bea9;
+  --green-600: #3c9f8b;
+  --green-700: #2d7668;
+  --green-800: #1d4e44;
+  --green-900: #0f2924;
+  --green-950: #071310;
+
+  --lime-50: #f4faf4;
+  --lime-100: #eaf6ea;
+  --lime-200: #d5ecd4;
+  --lime-300: #c0e3bf;
+  --lime-400: #aada9a;
+  --lime-500: #96d195;
+  --lime-600: #64bb62;
+  --lime-700: #429541;
+  --lime-800: #2c642b;
+  --lime-900: #163216;
+  --lime-950: #0b190b;
+}
+
+/* Color Tokens */
+:root {
+  --ifm-color-primary-darkest: #0e232a;
+  --ifm-color-primary-darker: #1c4654;
+  --ifm-color-primary-dark: #2a697e;
+  --ifm-color-primary: #388ca8;
+  --ifm-color-primary-light: #52a8c5;
+  --ifm-color-primary-lighter: #75bad1;
+  --ifm-color-primary-lightest: #98cbdc;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --ifm-heading-color: var(--grayscale-800);
+}
+
+[data-theme="dark"] {
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Fonts */
+:root {
+  --ifm-font-family-base: "Inter", system-ui, -apple-system, Segoe UI, Roboto,
+    Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI",
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  --ifm-heading-font-family: "Rubik", var(--ifm-font-family-base);
+  --ifm-heading-font-weight: 600;
+}
+
+@layer utilities {
+  .debug {
+    @apply outline outline-red-500 outline-2 -outline-offset-1;
+  }
+}
+
+.header-github-link::before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  display: flex;
+  background-color: var(--ifm-navbar-link-color);
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
+  transition: background-color var(--ifm-transition-fast)
+    var(--ifm-transition-timing-default);
+}
+
+.header-github-link:hover::before {
+  background-color: var(--ifm-navbar-link-hover-color);
+}
+
+@layer components {
+  .navbar__logo {
+    @apply flex items-center gap-2;
+  }
+  .navbar__logo::after {
+    font-family: var(--ifm-heading-font-family);
+    font-weight: 300;
+    content: "50 Days of FL";
+  }
+}

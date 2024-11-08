@@ -1,0 +1,15 @@
+project:
+  type: docusaurus
+
+format:
+  docusaurus-md:
+    code-fold: false
+    pandoc:
+      filters:
+        - at: post-render
+          path: quarto/filters/fix-image-paths.lua
+        - at: post-finalize
+          path: quarto/filters/css-classes.lua
+
+execute:
+  warning: false

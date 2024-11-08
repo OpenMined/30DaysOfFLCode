@@ -1,0 +1,7 @@
+.docusaurus/
+.ipynb_checkpoints/
+.quarto/
+.vscode/
+build/
+node_modules/
+.python-version
