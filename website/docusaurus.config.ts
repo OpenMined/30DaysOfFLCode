@@ -93,6 +93,12 @@ const config: Config = {
       respectPrefersColorScheme: false,
     },
   } satisfies Preset.ThemeConfig,
+  scripts: [
+    {
+      src: "scripts/clarity.js",
+      async: true,
+    },
+  ],
 };
 
 export default config;
