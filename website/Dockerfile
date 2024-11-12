@@ -10,4 +10,5 @@ RUN npm run build
 FROM build AS serve
 
 EXPOSE 80
+
 CMD ["npm", "run", "serve", "--", "--host", "0.0.0.0", "--no-open", "--port", "80"]

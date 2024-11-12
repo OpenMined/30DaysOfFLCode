@@ -6,7 +6,7 @@ import tailwindPlugin from "./plugins/tailwind-config.cjs";
 const config: Config = {
   title: "OpenMined Docs",
   tagline: "Tagline",
-  favicon: "img/favicon.ico",
+  favicon: "img/logo-icon.svg",
 
   url: "https://50-days-of-fl.openmined.org",
   baseUrl: "/",
