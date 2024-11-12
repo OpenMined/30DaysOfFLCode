@@ -1,9 +1,17 @@
-# ======== BUILD ========
-FROM node:lts AS build
+# ======== BASE ========
+FROM node:lts AS base
 
 WORKDIR /opt/docusaurus
-COPY . /opt/docusaurus/
+
+COPY package.json .
+COPY package-lock.json .
+
 RUN npm ci
+
+# ======== BUILD ========
+FROM base AS build
+
+COPY . /opt/docusaurus/
 RUN npm run build
 
 # ======== SERVE ========
