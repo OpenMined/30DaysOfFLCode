@@ -26,7 +26,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          routeBasePath: "/",
+          // routeBasePath: "/",
           editUrl:
             "https://github.com/OpenMined/50-Days-of-FL-Docusaurus/tree/main",
         },
@@ -67,11 +67,11 @@ const config: Config = {
           title: "Community",
           items: [
             {
-              label: "Stack Overflow",
+              label: "GitHub",
               href: "#",
             },
             {
-              label: "Discord",
+              label: "Slack",
               href: "#",
             },
             {
@@ -81,7 +81,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} OpenMined`,
+      copyright: `Copyright © ${new Date().getFullYear()} OpenMined Foundation.`,
     },
     prism: {
       theme: prismThemes.vsDark,
