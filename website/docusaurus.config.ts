@@ -4,7 +4,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 import tailwindPlugin from "./plugins/tailwind-config.cjs";
 
 const config: Config = {
-  title: "OpenMined Docs",
+  title: "OpenMined's 30 Days of Federated Learning.",
   tagline: "Tagline",
   favicon: "img/favicon.ico",
 
@@ -62,25 +62,25 @@ const config: Config = {
     },
     footer: {
       style: "dark",
-      links: [
-        {
-          title: "Community",
-          items: [
-            {
-              label: "GitHub",
-              href: "#",
-            },
-            {
-              label: "Slack",
-              href: "#",
-            },
-            {
-              label: "Twitter",
-              href: "#",
-            },
-          ],
-        },
-      ],
+      // links: [
+      //   {
+      //     title: "Community",
+      //     items: [
+      //       {
+      //         label: "GitHub",
+      //         href: "#",
+      //       },
+      //       {
+      //         label: "Slack",
+      //         href: "#",
+      //       },
+      //       {
+      //         label: "Twitter",
+      //         href: "#",
+      //       },
+      //     ],
+      //   },
+      // ],
       copyright: `Copyright © ${new Date().getFullYear()} OpenMined Foundation.`,
     },
     prism: {

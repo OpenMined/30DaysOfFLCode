@@ -11,9 +11,9 @@ import styles from "./index.module.css";
 
 // Deadline and duration constants
 const millisecondsPerDay = 24 * 60 * 60 * 1000;
-const daysUntilDeadline = Math.ceil((new Date('2024-12-15').getTime() - Date.now()) / millisecondsPerDay);
+const daysUntilDeadline = Math.ceil((new Date('2024-12-05').getTime() - Date.now()) / millisecondsPerDay);
 const deadline = new Date(Date.now() + daysUntilDeadline * millisecondsPerDay);
-const duration = 40; // days
+const duration = 30; // days
 const isDeadline = Date.now() > deadline.getTime();
 const startDate = new Date(deadline);
 startDate.setDate(startDate.getDate() - duration);
@@ -37,7 +37,8 @@ function HomepageHeader() {
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
         </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        {/* <p className="hero__subtitle">{siteConfig.tagline}</p> */}
+        <Counter startDate={startDate} duration={duration} />
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
@@ -46,7 +47,6 @@ function HomepageHeader() {
             Docusaurus Tutorial - 5min ⏱️
           </Link>
         </div>
-        <Counter startDate={startDate} />
       </div>
     </header>
   );
