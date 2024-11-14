@@ -1,0 +1,11 @@
+{
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "overrides": [
+    {
+      "files": ".eslintrc",
+      "options": {
+        "trailingComma": "none"
+      }
+    }
+  ]
+}
