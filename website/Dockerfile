@@ -1,5 +1,5 @@
 # ======== BASE ========
-FROM node:lts AS base
+FROM node:22-slim AS base
 
 WORKDIR /opt/docusaurus
 
