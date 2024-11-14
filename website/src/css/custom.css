@@ -121,14 +121,3 @@
 .header-github-link:hover::before {
   background-color: var(--ifm-navbar-link-hover-color);
 }
-
-@layer components {
-  .navbar__logo {
-    @apply flex items-center gap-2;
-  }
-  .navbar__logo::after {
-    font-family: var(--ifm-heading-font-family);
-    font-weight: 300;
-    content: "50 Days of FL";
-  }
-}

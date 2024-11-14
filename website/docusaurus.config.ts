@@ -4,11 +4,11 @@ import type * as Preset from "@docusaurus/preset-classic";
 import tailwindPlugin from "./plugins/tailwind-config.cjs";
 
 const config: Config = {
-  title: "OpenMined Docs",
+  title: "#30DaysOfFLCode",
   tagline: "Tagline",
   favicon: "img/logo-icon.svg",
 
-  url: "https://50-days-of-fl.openmined.org",
+  url: "https://30-days-of-fl.openmined.org",
   baseUrl: "/",
   plugins: [tailwindPlugin],
 
@@ -28,7 +28,7 @@ const config: Config = {
           sidebarPath: "./sidebars.ts",
           routeBasePath: "/",
           editUrl:
-            "https://github.com/OpenMined/50-Days-of-FL-Docusaurus/tree/main",
+            "https://github.com/OpenMined/30-Days-of-FL-Docusaurus/tree/main",
         },
         theme: {
           customCss: "./src/css/custom.css",
@@ -43,8 +43,9 @@ const config: Config = {
     navbar: {
       logo: {
         alt: "OpenMined logo",
-        src: "img/logo-light.svg",
+        src: "img/logo-icon.svg",
       },
+      title: "#30DaysOfFLCode",
       items: [
         // {
         //   type: "docSidebar",
@@ -53,7 +54,7 @@ const config: Config = {
         //   label: "Tutorials",
         // },
         {
-          href: "https://github.com/OpenMined/50DaysOfFlCode",
+          href: "https://github.com/OpenMined/30DaysOfFlCode",
           position: "right",
           className: "header-github-link",
           "aria-label": "GitHub repository",
