@@ -1,13 +1,22 @@
-# ======== BUILD ========
-FROM node:lts AS build
+# ======== BASE ========
+FROM node:22-slim AS base
 
 WORKDIR /opt/docusaurus
-COPY . /opt/docusaurus/
+
+COPY package.json .
+COPY package-lock.json .
+
 RUN npm ci
+
+# ======== BUILD ========
+FROM base AS build
+
+COPY . /opt/docusaurus/
 RUN npm run build
 
 # ======== SERVE ========
 FROM build AS serve
 
-EXPOSE 80
-CMD ["npm", "run", "serve", "--", "--host", "0.0.0.0", "--no-open", "--port", "80"]
+EXPOSE 3000
+
+CMD ["npm", "run", "serve", "--", "--host", "0.0.0.0", "--no-open", "--port", "3000"]
