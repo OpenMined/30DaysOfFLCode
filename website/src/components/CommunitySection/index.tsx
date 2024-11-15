@@ -34,7 +34,7 @@ function CommunityItem({ title, imgSrc, link }: CommunityItemProps) {
   );
 }
 
-export default function CommunityItems(): JSX.Element {
+export default function CommunitySection(): JSX.Element {
   return (
     <section className="flex flex-col items-center py-16">
       <Heading as="h2" className="pb-4 pt-2 text-center">

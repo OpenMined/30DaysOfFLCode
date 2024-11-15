@@ -2,7 +2,7 @@ import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
-import CommunityItems from "@site/src/components/HomepageFeatures";
+import CommunitySection from "@site/src/components/CommunitySection";
 import Heading from "@theme/Heading";
 import Timer from "../components/timer/Timer";
 import Counter from "../components/counter/Counter";
@@ -65,7 +65,7 @@ export default function Home(): JSX.Element {
       )}
       <HeropageHeader />
       <main>
-        <CommunityItems />
+        <CommunitySection />
       </main>
     </Layout>
   );
