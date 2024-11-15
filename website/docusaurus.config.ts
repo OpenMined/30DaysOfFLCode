@@ -5,7 +5,8 @@ import tailwindPlugin from "./plugins/tailwind-config.cjs";
 
 const config: Config = {
   title: "#30DaysOfFLCode",
-  tagline: "At OpenMined, we are invested in the advancement of technologies we believe will create a safer future.",
+  tagline:
+    "At OpenMined, we are invested in the advancement of technologies we believe will create a safer future.",
   favicon: "img/logo-icon.svg",
 
   url: "https://30-days-of-fl.openmined.org",
@@ -26,7 +27,6 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          // routeBasePath: "/",
           editUrl:
             "https://github.com/OpenMined/30-Days-of-FL-Docusaurus/tree/main",
         },
@@ -43,9 +43,9 @@ const config: Config = {
     navbar: {
       logo: {
         alt: "OpenMined logo",
-        src: "img/logo-light.svg",
+        src: "img/logo-icon.svg",
       },
-      // title: "#30DaysOfFLCode",
+      title: "#30DaysOfFLCode",
       items: [
         // {
         //   type: "docSidebar",
