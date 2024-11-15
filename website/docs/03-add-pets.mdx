@@ -1,0 +1,266 @@
+---
+title: Building a Distributed CPU Tracker with SyftBox
+sidebar_label: CPU Tracker Tutorial II
+description: Learn how to build a distributed CPU monitoring system using SyftBox's peer-to-peer architecture
+---
+
+# Building a Distributed CPU Tracker with SyftBox
+
+In this tutorial, we'll build a *private and distributed* CPU monitoring system using SyftBox. This system allows multiple peers to share their CPU usage data in a privacy-preserving manner, with a central leader node that aggregates and visualizes the information. We use Differential Privacy as the PET for this tutorial. This is a continuation of the previous tutorial with a focus on the [leader app](https://github.com/openmined/cpu_tracker_leader)
+
+
+## Overview
+
+Our application consists of two main components:
+
+1. **CPU Tracker Member**: A client application that monitors local CPU usage and shares a private/sanitized version with the network
+2. **CPU Tracker Leader**: A datasite node that aggregates CPU data from all members and provides a visualization dashboard
+
+This tutorial focuses on building the leader component, which will:
+- Setup the environment ([Step 1](#step-1-setting-up-the-environment))
+- Scan the network for active CPU tracker members and collect and aggregate CPU usage data ([Step 2](#step-2-core-application-logic))
+- Present the data through an interactive web dashboard (and an easy way for new members to join the computation) ([Step 3](#step-3-web-dashboard))
+
+## Project Structure
+
+```bash
+cpu_tracker_leader/
+├── run.sh              # Entry point script
+├── main.py             # Main application logic
+├── .gitignore         # Git ignore file
+└── assets/            # Web dashboard assets
+    ├── index.html     # Dashboard HTML
+    ├── index.js       # Dashboard JavaScript
+    └── syftbox-sdk.js # SyftBox integration SDK
+```
+
+## Step 1: Setting Up the Environment
+
+First, let's look at our `run.sh` script that sets up the Python environment. If you're familiar with this, skip to [Step 2](#step-2-core-application-logic)
+
+
+<details>
+<summary>Details of this `run.sh` script</summary>
+<br />
+```bash
+#!/bin/sh
+set -e
+
+if [ ! -d ".venv" ]; then
+    echo "Virtual environment not found. Creating one..."
+    uv venv -p 3.12 .venv
+    echo "Virtual environment created successfully."
+else
+    echo "Virtual environment already exists."
+fi
+
+uv pip install -U syftbox --quiet
+. .venv/bin/activate
+
+echo "Running cpu_tracker_leader with $(python3 --version) at '$(which python3)'"
+python3 main.py
+
+deactivate
+```
+This script:
+1. Checks for an existing virtual environment
+2. Creates one if it doesn't exist
+3. Installs the SyftBox package
+4. Runs our main application
+</details>
+
+
+## Step 2: Core Application Logic
+
+Our `main.py` contains several key functions that handle the core functionality:
+
+### Network Participant Discovery
+
+```python
+def network_participants(datasite_path: Path):
+    """Retrieves a list of user directories (participants) in a given datasite path."""
+    entries = os.listdir(datasite_path)
+    users = []
+    
+    for entry in entries:
+        if Path(datasite_path / entry).is_dir():
+            users.append(entry)
+    
+    return users
+```
+
+This function scans the network for all available peers by looking at directories in the datasite path.
+
+### Data Freshness Check
+
+```python
+def is_updated(timestamp: str) -> bool:
+    """Checks if a given timestamp is within the last minute."""
+    data_timestamp = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
+    current_time = datetime.now()
+    time_diff = current_time - data_timestamp
+    return time_diff < timedelta(minutes=1)
+```
+
+This function ensures we only use recent data (within the last minute) for our aggregation.
+
+### CPU Usage Aggregation
+
+```python
+def get_network_cpu_mean(
+    datasites_path: Path, 
+    peers: list[str]
+) -> Tuple[float, list[str]]:
+    """Calculates the mean CPU usage across network peers."""
+    aggregated_usage = 0
+    aggregated_peers = 0
+    cpu_usage_mean = -1
+    active_peers = []
+
+    for peer in peers:
+        tracker_file = (
+            datasites_path / peer / "api_data" / "cpu_tracker" / "cpu_tracker.json"
+        )
+
+        if not tracker_file.exists():
+            continue
+
+        try:
+            with open(str(tracker_file), "r") as json_file:
+                peer_data = json.load(json_file)
+                
+            if "timestamp" in peer_data and is_updated(peer_data["timestamp"]):
+                aggregated_usage += float(peer_data["cpu"])
+                aggregated_peers += 1
+                active_peers.append(peer)
+        except json.JSONDecodeError:
+            continue
+
+    if aggregated_peers > 0:
+        cpu_usage_mean = aggregated_usage / aggregated_peers
+
+    return cpu_usage_mean, active_peers
+```
+
+This function:
+1. Iterates through all peers
+2. Reads their CPU tracker JSON files
+3. Validates the data freshness
+4. Calculates the mean CPU usage
+5. Returns both the mean and list of active peers
+
+### Historical Data Management
+
+```python
+def truncate_file(file_path: Path, max_items: int, new_sample: float, peers: list[str]):
+    """Manages historical CPU data, maintaining a rolling window of samples."""
+    current_time = datetime.now(UTC)
+    timestamp_str = current_time.strftime("%Y-%m-%d %H:%M:%S")
+    history = []
+
+    if file_path.exists():
+        with open(file_path, "r") as f:
+            historical_data = json.load(f)
+            history = historical_data["items"]
+
+        history.append({"cpu": new_sample, "timestamp": timestamp_str})
+
+        if len(history) > max_items:
+            history = history[-max_items:]
+    else:
+        history.append({"cpu": new_sample, "timestamp": timestamp_str})
+
+    with open(file_path, "w") as f:
+        json.dump({"items": history, "peers": peers}, f, indent=4)
+```
+
+This function maintains our historical data by:
+1. Loading existing history
+2. Adding new samples
+3. Maintaining a maximum number of items (rolling window)
+4. Saving the updated history with active peers
+
+## Step 3: Web Dashboard
+
+The application includes a real-time web dashboard built with HTML, CSS, and JavaScript. All the files associated with this are primarily in the `/assets/` subdirectory. Here are the key components:
+
+### Dashboard Layout
+
+The dashboard is built using a modern, responsive design with cards for different metrics:
+- Current CPU usage
+- Historical CPU usage graph
+- Active peers list
+
+### Real-time Updates
+
+The dashboard updates every 10 seconds, fetching new data and updating the visualizations:
+
+```javascript
+async function loadCPUTracker() {
+    const response = await fetch("./cpu_tracker.json");
+    const data = await response.json();
+    
+    updateCPUTracker(data);
+    document.getElementById("lastUpdate").textContent = 
+        new Date().toLocaleString();
+}
+
+// Initialize and start updates
+document.addEventListener("DOMContentLoaded", () => {
+    loadCPUTracker();
+    setInterval(loadCPUTracker, 10000);
+});
+```
+
+### Easy Network Join
+
+The dashboard includes the SyftBox SDK integration that allows new peers to join the network with a single click:
+
+```javascript
+APIBadge.show("https://github.com/openmined/cpu_tracker_member");
+```
+
+## Running the Application
+
+1. Place the application folder in your SyftBox apps directory:
+   ```bash
+   # Recommended 
+   syftbox app install OpenMined/cpu_tracker_leader
+   # Alternatively as follows
+   # cp -r cpu_tracker_leader /SyftBox/apps/
+   # or by dragging and dropping into your apis folder
+   ```
+
+2. SyftBox will automatically detect and run the application every 10 seconds using the `run.sh` script.
+
+3. Access the dashboard by navigating to your datasite's public folder in a web browser.
+
+## Privacy Considerations
+
+The CPU Tracker implements privacy in many different ways:
+1. Only sharing aggregated statistics after adding Differentially Private noise
+2. Using recent data only (within the last minute)
+3. Not exposing individual peer metrics
+4. Allowing peers to opt-in/out by installing/uninstalling the member application
+
+## Conclusion
+
+You've now built a distributed CPU monitoring system using SyftBox! This example demonstrates:
+- Privacy-preserving metrics
+- Network peer discovery
+- Data aggregation
+- Real-time visualization
+- Easy network participation
+
+Next steps could include:
+- Adding more metrics (memory, disk usage, etc.)
+- Creating custom alerts based on CPU thresholds
+- Aggregating other types of private data
+
+## Additional Resources
+
+- [SyftBox Documentation](https://syftbox.openmined.org/)
+- [CPU Tracker Member Repository](https://github.com/openmined/cpu_tracker_member)
+- [CPU Tracker Leader Repository](https://github.com/openmined/cpu_tracker_leader)
+
+
