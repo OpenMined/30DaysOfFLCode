@@ -3,12 +3,17 @@
  * and scoped locally.
  */
 
+ .hero {
+  background: linear-gradient(67.45deg, #53BEA9 0%, #96D195 99.29%);
+ }
+
 .heroBanner {
   padding: 4rem 0;
   padding-top: 0%;
   text-align: center;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(67.45deg, #53BEA9 0%, #96D195 99.29%);
 }
 
 @media screen and (max-width: 996px) {

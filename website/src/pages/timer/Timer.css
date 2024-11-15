@@ -15,12 +15,13 @@ li {
   font-size: 1rem;
   list-style-type: none;
   padding: 1em;
+  text-align: center;
   text-transform: uppercase;
 }
 
 li span {
   display: block;
-  font-size: 1rem;
+  font-size: 2rem;
 }
 
 /* @media all and (max-width: 768px) {

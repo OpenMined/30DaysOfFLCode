@@ -11,44 +11,34 @@ import styles from "./index.module.css";
 
 // Deadline and duration constants
 const millisecondsPerDay = 24 * 60 * 60 * 1000;
-const daysUntilDeadline = Math.ceil((new Date('2024-12-05').getTime() - Date.now()) / millisecondsPerDay);
+const daysUntilDeadline = Math.ceil((new Date('2024-12-20').getTime() - Date.now()) / millisecondsPerDay);
 const deadline = new Date(Date.now() + daysUntilDeadline * millisecondsPerDay);
 const duration = 30; // days
 const isDeadline = Date.now() > deadline.getTime();
 const startDate = new Date(deadline);
 startDate.setDate(startDate.getDate() - duration);
 
-function HomepageHeader() {
+function HeropageHeader() {
   const { siteConfig } = useDocusaurusContext();
   
   return (
-    <header className={clsx("hero hero--primary", styles.heroBanner)}>
+    <section className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
-        {!isDeadline && (
-          <Timer
-            deadline={deadline}
-            onFinish={() => {
-              console.log('Countdown finished!');
-              // Add your desired actions here
-              alert('Countdown complete!');
-            }}
-          />
-        )}
-        <Heading as="h1" className="hero__title">
+        <Heading as="h1" className="hero__title m-0 pt-8 pb-8">
           {siteConfig.title}
         </Heading>
-        {/* <p className="hero__subtitle">{siteConfig.tagline}</p> */}
-        <Counter startDate={startDate} duration={duration} />
-        <div className={styles.buttons}>
+        <div className={`${styles.buttons} pt-8 pb-8`}>
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro"
           >
-            Docusaurus Tutorial - 5min ⏱️
+            Quickstart Guide - 5min ⏱️
           </Link>
         </div>
+        <p className="hero__subtitle text-black m-0 pt-8 pb-8">{siteConfig.tagline}</p>
+        <Counter startDate={startDate} duration={duration} />
       </div>
-    </header>
+    </section>
   );
 }
 
@@ -59,7 +49,17 @@ export default function Home(): JSX.Element {
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
     >
-      <HomepageHeader />
+    {!isDeadline && (
+      <Timer
+        deadline={deadline}
+        onFinish={() => {
+          console.log('Countdown finished!');
+          // Add your desired actions here
+          alert('Countdown complete!');
+        }}
+      />
+    )}
+      <HeropageHeader />
       <main>
         <HomepageFeatures />
       </main>

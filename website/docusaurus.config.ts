@@ -5,7 +5,7 @@ import tailwindPlugin from "./plugins/tailwind-config.cjs";
 
 const config: Config = {
   title: "#30DaysOfFLCode",
-  tagline: "Tagline",
+  tagline: "At OpenMined, we are invested in the advancement of technologies we believe will create a safer future.",
   favicon: "img/logo-icon.svg",
 
   url: "https://30-days-of-fl.openmined.org",
@@ -43,9 +43,9 @@ const config: Config = {
     navbar: {
       logo: {
         alt: "OpenMined logo",
-        src: "img/logo-icon.svg",
+        src: "img/logo-light.svg",
       },
-      title: "#30DaysOfFLCode",
+      // title: "#30DaysOfFLCode",
       items: [
         // {
         //   type: "docSidebar",

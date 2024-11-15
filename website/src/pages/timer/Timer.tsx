@@ -35,7 +35,7 @@ function Timer({ deadline, onFinish }) {
 	}, [deadline, onFinish]);
 
 	return (
-		<div id="countdown" className='countdown'>
+		<div id="countdown" className='countdown pt-6 pb-6'>
 			<ul>
 				<li><span id="days">{days}</span>days</li>
 				<li><span id="hours">{hours}</span>Hours</li>

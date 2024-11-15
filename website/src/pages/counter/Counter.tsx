@@ -35,7 +35,7 @@ function Counter({ startDate, duration }) {
   }
 
   return (
-    <div id="count--container" className="count--container">
+    <div id="count--container" className="count--container pt-6 pb-6">
       {counts}
     </div>
   );
