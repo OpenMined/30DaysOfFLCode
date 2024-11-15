@@ -26,10 +26,10 @@ function HeropageHeader() {
   return (
     <section className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
-        <Heading as="h1" className="hero__title m-0 pb-8 pt-8">
+        <Heading as="h1" className="hero__title m-0 py-8">
           {siteConfig.title}
         </Heading>
-        <div className={`${styles.buttons} pb-8 pt-8`}>
+        <div className={`${styles.buttons} py-8`}>
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro"
@@ -37,7 +37,7 @@ function HeropageHeader() {
             Quickstart Guide - 5min ⏱️
           </Link>
         </div>
-        <p className="hero__subtitle m-0 pb-8 pt-8 text-black">
+        <p className="hero__subtitle m-0 py-8 text-black">
           {siteConfig.tagline}
         </p>
         <Counter startDate={startDate} duration={duration} />
