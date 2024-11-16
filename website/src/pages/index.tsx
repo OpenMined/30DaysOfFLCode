@@ -26,13 +26,13 @@ function HeropageHeader() {
   return (
     <section className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
-        <Heading as="h1" className="hero__title m-0 py-8">
+        <Heading as="h1" className="m-0 py-10 text-5xl">
           {siteConfig.title}
         </Heading>
         <div className={`${styles.buttons} py-8`}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro"
+            to="/docs/syftbox-intro"
           >
             Quickstart Guide - 5min ⏱️
           </Link>
@@ -53,18 +53,18 @@ export default function Home(): JSX.Element {
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
     >
-      {!isDeadline && (
-        <Timer
-          deadline={deadline}
-          onFinish={() => {
-            console.log("Countdown finished!");
-            // Add your desired actions here
-            alert("Countdown complete!");
-          }}
-        />
-      )}
-      <HeropageHeader />
       <main>
+        {!isDeadline && (
+          <Timer
+            deadline={deadline}
+            onFinish={() => {
+              console.log("Countdown finished!");
+              // Add your desired actions here
+              alert("Countdown complete!");
+            }}
+          />
+        )}
+        <HeropageHeader />
         <CommunitySection />
       </main>
     </Layout>
