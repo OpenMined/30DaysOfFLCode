@@ -30,8 +30,6 @@ function LogoThemedImage({
     />
   );
 
-  // Is this extra div really necessary?
-  // introduced in https://github.com/facebook/docusaurus/pull/5666
   return imageClassName ? (
     <div className={imageClassName}>{themedImage}</div>
   ) : (

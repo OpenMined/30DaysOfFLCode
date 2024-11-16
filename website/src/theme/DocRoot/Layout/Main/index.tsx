@@ -29,10 +29,10 @@ export default function DocRootLayoutMain({
     <main
       className={clsx(
         styles.docMainContainer,
-        (hiddenSidebarContainer || !sidebar) && styles.docMainContainerEnhanced
+        (hiddenSidebarContainer || !sidebar) && styles.docMainContainerEnhanced,
       )}
     >
-      <div className="absolute w-full h-full -z-10">
+      <div className="absolute -z-10 size-full">
         {init && (
           <Particles
             className="h-full"
@@ -87,14 +87,11 @@ export default function DocRootLayoutMain({
         className={clsx(
           "container padding-top--md padding-bottom--lg",
           styles.docItemWrapper,
-          hiddenSidebarContainer && styles.docItemWrapperEnhanced
+          hiddenSidebarContainer && styles.docItemWrapperEnhanced,
         )}
       >
         {children}
       </div>
     </main>
   );
-}
-function loadAll(engine: Engine) {
-  throw new Error("Function not implemented.");
 }

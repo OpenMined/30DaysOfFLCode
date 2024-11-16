@@ -5,7 +5,8 @@ import tailwindPlugin from "./plugins/tailwind-config.cjs";
 
 const config: Config = {
   title: "#30DaysOfFLCode",
-  tagline: "Tagline",
+  tagline:
+    "At OpenMined, we are invested in the advancement of technologies we believe will create a safer future.",
   favicon: "img/logo-icon.svg",
 
   url: "https://30-days-of-fl.openmined.org",
@@ -26,7 +27,6 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          routeBasePath: "/",
           editUrl:
             "https://github.com/OpenMined/30-Days-of-FL-Docusaurus/tree/main",
         },
@@ -63,26 +63,26 @@ const config: Config = {
     },
     footer: {
       style: "dark",
-      links: [
-        {
-          title: "Community",
-          items: [
-            {
-              label: "Stack Overflow",
-              href: "#",
-            },
-            {
-              label: "Discord",
-              href: "#",
-            },
-            {
-              label: "Twitter",
-              href: "#",
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} OpenMined`,
+      // links: [
+      //   {
+      //     title: "Community",
+      //     items: [
+      //       {
+      //         label: "GitHub",
+      //         href: "#",
+      //       },
+      //       {
+      //         label: "Slack",
+      //         href: "#",
+      //       },
+      //       {
+      //         label: "Twitter",
+      //         href: "#",
+      //       },
+      //     ],
+      //   },
+      // ],
+      copyright: `Copyright © ${new Date().getFullYear()} OpenMined Foundation.`,
     },
     prism: {
       theme: prismThemes.vsDark,

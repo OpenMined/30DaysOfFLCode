@@ -1,0 +1,118 @@
+.count--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* https://stripe.com/payments */
+.count--container::after {
+  --blendBackground: #11efe3;
+  --blendIntersection: #0048e5;
+  --blendForeground: #96f;
+  --gradientColorZero: #4436ff;
+  --gradientColorOne: #56f;
+  --gradientColorTwo: #d679ff;
+  --gradientColorThree: #11efe3;
+  --gradientColorZeroTransparent: rgba(68, 54, 255, 0);
+  --gradientColorOneTransparent: rgba(85, 102, 255, 0);
+  --gradientColorTwoTransparent: rgba(214, 121, 255, 0);
+  --gradientColorThreeTransparent: rgba(4, 255, 255, 0);
+  --shadeOneColor: #16cbe1;
+  --shadeTwoColor: #20b5e3;
+  --shadeThreeColor: #1086db;
+  --shadeFourColor: #1959e6;
+  --shadeFiveColor: #96f;
+  --shadeSixColor: #002c59;
+  --shadeSevenColor: #00c4c4;
+  --shadeEightColor: #635bff;
+  background: radial-gradient(var(--gradientColorThree) 23%, var(--gradientColorThreeTransparent) 67% 100%) 385px -24px, radial-gradient(var(--gradientColorOne) 0, var(--gradientColorOneTransparent) 60% 100%) -940px 290px, radial-gradient(var(--gradientColorTwo) 10%, var(--gradientColorTwoTransparent) 60% 100%) -120px 250px, radial-gradient(var(--gradientColorOne) 40%, var(--gradientColorOneTransparent) 57% 100%) 495px -44px, radial-gradient(var(--gradientColorZero) 30%, var(--gradientColorZeroTransparent) 67% 100%) 122px -120px, radial-gradient(var(--gradientColorZero) 10%, var(--gradientColorZeroTransparent) 60% 100%) -420px 120px, radial-gradient(var(--gradientColorTwo) 15%, var(--gradientColorTwoTransparent) 50% 100%) -620px 0, radial-gradient(var(--gradientColorTwo) 25%, var(--gradientColorTwoTransparent) 50% 100%) 520px -250px, var(--gradientColorZero);
+  background-repeat: repeat-y;
+}
+
+.count {
+  display: flex;
+  font-size: 24px;
+  line-height: 1;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.count--day {
+  /* display: inline-block; */
+  color: #000000;
+  font-size: 1rem;
+  padding-top: 12px;
+  /* padding-left: 1.5rem; */
+  /* padding-right: 1.5rem; */
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.count--end {
+  font-size: 24px;
+}
+
+.count--day {
+  --column: 0;
+  --index: 1;
+  --hexagon-size: 8vmin;    
+  --hexagon-size: 12vmin;
+  --mix-percentage: calc(var(--column) * var(--index) * 3%);
+  --color-surface-container: rgba(255, 255, 255, 0.35);
+  --color-on-surface: white;
+  --color-secondary: #75d8ee;
+  --color-primary: #ee75d2;
+  --mix-percentage: calc(var(--column)* var(--index)* 3%);
+  --hover-filter: brightness(1.5);
+  width: var(--hexagon-size);
+  aspect-ratio: 1;
+  position: relative;
+  background: var(--color-surface-container, color-mix(in srgb, var(--color-secondary), var(--color-primary) var(--mix-percentage)));
+  /* background-color: white; */
+  -webkit-backdrop-filter: blur(1rem);
+  backdrop-filter: blur(1rem);
+  -webkit-clip-path: polygon(98.66024% 45%, 99.39693% 46.5798%, 99.84808% 48.26352%, 100% 50%, 99.84808% 51.73648%, 99.39693% 53.4202%, 98.66025% 55%, 78.66025% 89.64102%, 77.66044% 91.06889%, 76.42788% 92.30146%, 75% 93.30127%, 73.4202% 94.03794%, 71.73648% 94.48909%, 70% 94.64102%, 30% 94.64102%, 28.26352% 94.48909%, 26.5798% 94.03794%, 25% 93.30127%, 23.57212% 92.30146%, 22.33956% 91.06889%, 21.33975% 89.64102%, 1.33975% 55%, 0.60307% 53.4202%, 0.15192% 51.73648%, 0% 50%, 0.15192% 48.26352%, 0.60307% 46.5798%, 1.33975% 45%, 21.33975% 10.35898%, 22.33956% 8.93111%, 23.57212% 7.69854%, 25% 6.69873%, 26.5798% 5.96206%, 28.26352% 5.51091%, 30% 5.35898%, 70% 5.35898%, 71.73648% 5.51091%, 73.4202% 5.96206%, 75% 6.69873%, 76.42788% 7.69854%, 77.66044% 8.93111%, 78.66025% 10.35898%);
+  clip-path: polygon(98.66024% 45%, 99.39693% 46.5798%, 99.84808% 48.26352%, 100% 50%, 99.84808% 51.73648%, 99.39693% 53.4202%, 98.66025% 55%, 78.66025% 89.64102%, 77.66044% 91.06889%, 76.42788% 92.30146%, 75% 93.30127%, 73.4202% 94.03794%, 71.73648% 94.48909%, 70% 94.64102%, 30% 94.64102%, 28.26352% 94.48909%, 26.5798% 94.03794%, 25% 93.30127%, 23.57212% 92.30146%, 22.33956% 91.06889%, 21.33975% 89.64102%, 1.33975% 55%, 0.60307% 53.4202%, 0.15192% 51.73648%, 0% 50%, 0.15192% 48.26352%, 0.60307% 46.5798%, 1.33975% 45%, 21.33975% 10.35898%, 22.33956% 8.93111%, 23.57212% 7.69854%, 25% 6.69873%, 26.5798% 5.96206%, 28.26352% 5.51091%, 30% 5.35898%, 70% 5.35898%, 71.73648% 5.51091%, 73.4202% 5.96206%, 75% 6.69873%, 76.42788% 7.69854%, 77.66044% 8.93111%, 78.66025% 10.35898%);
+  cursor: pointer;
+}
+
+@media (hover) {
+  .count--day:hover {
+    filter: var(--hover-filter);
+  }
+}
+
+.count--day:after {
+  content: var(--icon);
+  display: grid;
+  place-items: center;
+  position: absolute;
+  filter: var(--icon-filter);
+  font-size: 2.5vmin;
+  inset: 0;
+}
+
+@media screen and (min-width: 981px) {
+  .count--day {
+    --hexagon-size: 8vmin;
+    font-size: 1rem;
+    padding-top: 24px;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-left: 32px;
+    margin-right: 32px;
+    /* animation: cube-animation 5s linear infinite; */
+  }
+
+  @keyframes cube-animation {
+    from {
+      transform: rotate3d(1, 0, 1, 0deg);
+    }
+    to {
+      transform: rotate3d(1, 0, 1, 360deg);
+    }
+  }
+}
