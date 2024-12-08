@@ -40,9 +40,19 @@ Please find below all the contributed resources, organised by category
   - [Ring Computation Walkthrough: Calculating An Average Across Nodes](https://github.com/flow254/FLFun/blob/main/create-average-ring-computation.md) - A brief walkthrough on creating a Ring Computation on SyftBox that computes the average value from nodes.
 
 - [From Centralised to Decentralised Training: An Intro to Federated Learning](https://github.com/deep-learning-indaba/indaba-pracs-2024/tree/main/practicals/Federated_Learning) - A Jupyter Notebook tutorial aimed to provide a practical overview with code examples to all the the foundational concepts tackled in federated learning. This tutorial was written by Andrej Jovanović, Sree Harsha Nelaturu and Luca Powell and presented at the 2024 iteration of the Deep Learning Indaba.
-- [Collection of Tutorials in Federate Learning from Tensor Flow](https://www.tensorflow.org/federated/tutorials/tutorials_overview) - A TensorFlow Colab Notebook collection of Federated Learning tutorials designed to provide practical examples of Federated Learning, covering concepts from basic to advanced levels.
+- [Collection of Tutorials in Federated Learning from Tensor Flow](https://www.tensorflow.org/federated/tutorials/tutorials_overview) - A TensorFlow Colab Notebook collection of Federated Learning tutorials designed to provide practical examples of Federated Learning, covering concepts from basic to advanced levels.
 
 - [Federated Learning for Credit Scoring](https://blog.openmined.org/federated-credit-scoring/) - A detailed blog post exploring the application of federated learning to credit scoring. It discusses key concepts such as silo vs. device architectures, horizontal vs. vertical federated learning, and non-IID data challenges, and includes source code examples.
+
+- [Flower Framework Tutorials](https://flower.ai/docs/framework/index.html) - This webpage contains Flower Framework Tutorials on Federated Learning, Quickstart tutorials with Flower Framework, How-To Guides and Reference Docs.
+  
+- [FedN Tutorials by Scaleout Systems](https://docs.scaleoutsystems.com/en/stable/quickstart.html) - Collection of Introductory tutorials on FedN, setting up FedN Project, using the FedN API Client,  Developer Guide and much more.
+
+- [NVFlare by NVIDIA](https://nvidia.github.io/NVFlare/catalog/) - A great collection of tutorials in form of a Catalog on Federated Learning using NVFlare by NVIDIA.
+
+- [Tutorials on FATE](https://fate.readthedocs.io/en/latest/2.0/fate/quick_start/) - Collection of tutorials on FATE framework, quickstart, pipelines, ML Tutorials and much more.
+- [OpenFL Running the Federation Tutorials](https://openfl.readthedocs.io/en/latest/developer_guide/running_the_federation.tutorial.html) - These tutorials use the Jupyter Lab server to understand the APIs used in Open Federated Learning (OpenFL).
+
 
 ### Articles
 
