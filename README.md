@@ -153,6 +153,8 @@ Please find below all the contributed resources, organised by category (click to
 
 - [Federated Learning Tutorial @ NeurIPS 2020](https://drive.google.com/file/d/1QGY2Zytp9XRSu95fX2lCld8DwfEdcHCG/view) - Federated Learning Tutorial @ NeurIPS 2020
 
+- [Federated learning course at Aalto University](https://www.youtube.com/watch?v=54caAfGwM88&list=PLrbn2dGrLJK9TwK1TILxluPApQCLq1Tf5) - A master level Federated Learning course from Aalto university.
+
 </details>
 
 
