@@ -102,6 +102,8 @@ Please find below all the contributed resources, organised by category (click to
 - [Federated Learning for Credit Scoring](https://blog.openmined.org/federated-credit-scoring/) - A detailed blog post exploring the application of federated learning to credit scoring. It discusses key concepts such as silo vs. device architectures, horizontal vs. vertical federated learning, and non-IID data challenges, and includes source code examples.
 
 - [Flower Framework Tutorials](https://flower.ai/docs/framework/index.html) - This webpage contains Flower Framework Tutorials on Federated Learning, Quickstart tutorials with Flower Framework, How-To Guides and Reference Docs.
+
+- [Federated AI Simulations with Flower](https://www.youtube.com/watch?v=XK_dRVcSZqg&list=PLNG4feLHqCWkdlSrEL2xbCtGa6QBxlUZb) - A YouTube video tutorial series by Flower.ai explaining how to do federated simulations with Flower.
   
 - [FedN Tutorials by Scaleout Systems](https://docs.scaleoutsystems.com/en/stable/quickstart.html) - Collection of Introductory tutorials on FedN, setting up FedN Project, using the FedN API Client,  Developer Guide and much more.
 
