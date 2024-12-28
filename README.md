@@ -145,6 +145,8 @@ Please find below all the contributed resources, organised by category (click to
 
 - [RAPPOR: Randomized Aggregatable Privacy-Preserving Ordinal Response](https://arxiv.org/pdf/1407.6981) - This pioneering algorithm enables privacy-preserving data collection through randomized response techniques. It allows statistical analysis without compromising sensitive data.
 
+- [Breaking Privacy in Real-World Differentially Private Synthetic Data](https://amanpriyanshu.github.io/SynthLeak/) - This article examines privacy vulnerabilities in synthetic financial data generation, revealing how differential privacy techniques can sometimes fail to prevent the leakage of sensitive personal information like names, emails, and phone numbers and be vulnerable to linkage attacks. It shows why a layered privacy approach is required and the need for auditing a dataset before releasing.
+
 ### Courses
 
 - [Federated Learning @ DeepLearning.AI](https://www.deeplearning.ai/short-courses/intro-to-federated-learning/) - An introductory course on federated learning delivered by DeepLearning.AI in collaboration with Flower.
